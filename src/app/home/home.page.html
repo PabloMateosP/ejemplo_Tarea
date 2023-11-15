@@ -12,12 +12,32 @@
       <ion-title size="large">Ejemplo Tarea</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-label>Título: </ion-label>
-  <ion-input [(ngModel)]="tareaEditando.titulo"></ion-input>
+  <ion-grid>
+    <ion-row>
+      <ion-label>Título: </ion-label>
+      <ion-input [(ngModel)]="tareaEditando.titulo"></ion-input>
 
-  <ion-label>Descripción: </ion-label>
-  <ion-input [(ngModel)]="tareaEditando.descripcion"></ion-input>
+      <ion-label>Descripción: </ion-label>
+      <ion-input [(ngModel)]="tareaEditando.descripcion"></ion-input>
 
-  <ion-button (click)="clickBotonInsertar()">Añadir Tarea</ion-button>
+      <ion-button (click)="clickBotonInsertar()">Añadir Tarea</ion-button>
+    </ion-row>
+  </ion-grid>
 
+  <h1>
+    LISTA DE TAREAS
+  </h1>
+
+  <ion-list>
+    <ion-item *ngFor="let documentTarea of arrayColeccionTareas">
+      <ion-grid>
+        <ion-row>
+          <h2>{{documentTarea.tarea.titulo}}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{documentTarea.tarea.descripcion}}</p>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
