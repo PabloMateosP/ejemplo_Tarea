@@ -20,7 +20,10 @@
       <ion-label>Descripción: </ion-label>
       <ion-input [(ngModel)]="tareaEditando.descripcion"></ion-input>
 
-      <ion-button (click)="clickBotonInsertar()">Añadir Tarea</ion-button>
+      <ion-button (click)="clickBotonInsertar()" fill="outline"><ion-icon name="document-outline"></ion-icon></ion-button><ion-button color="danger"
+        (click)="clickBotonBorrar()" fill="outline">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+      </ion-button>
     </ion-row>
   </ion-grid>
 
@@ -29,7 +32,8 @@
   </h1>
 
   <ion-list>
-    <ion-item *ngFor="let documentTarea of arrayColeccionTareas">
+    <ion-item *ngFor="let documentTarea of arrayColeccionTareas"
+      (click)="selectTarea(documentTarea.id, documentTarea.tarea)">
       <ion-grid>
         <ion-row>
           <h2>{{documentTarea.tarea.titulo}}</h2>
@@ -37,6 +41,7 @@
         <ion-row>
           <p>{{documentTarea.tarea.descripcion}}</p>
         </ion-row>
+
       </ion-grid>
     </ion-item>
   </ion-list>

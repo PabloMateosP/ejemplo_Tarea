@@ -21,6 +21,8 @@ export class HomePage {
     }
   ];
 
+  idTareaSelect: string = "";
+
   constructor(private firestoreService: FirestoreService) {
     this.obtenerListaTarea();
    }
@@ -29,14 +31,12 @@ export class HomePage {
   // En esta se debe de llamar a los datos introducido y añadirlos en la base de datos
   clickBotonInsertar() {
     this.firestoreService.insertar("tareas", this.tareaEditando);
-    
-    // this.firestoreService.insertar("tareas", this.tareaEditando).then(() => {
-    //   console.log('Tarea creada correctamente!!');
-    //   this.tareaEditando= {} as Tarea;
-    // }, () => {
-    //   //console.log(error);
-    // });
-    
+  }
+
+  // La función que daremos al botón
+  // En esta se debe de llamar a los datos introducidos para eliminarlos de la base de datos
+  clickBotonBorrar(){
+    this.firestoreService.borrar("tareas", this.idTareaSelect);
   }
 
   obtenerListaTarea(){
@@ -52,6 +52,11 @@ export class HomePage {
         })
       });
     });
+  }
+
+  selectTarea(idTarea:string, tareaSelect:Tarea){
+    this.tareaEditando = tareaSelect;
+    this.idTareaSelect = idTarea;
   }
 
 }
